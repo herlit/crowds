@@ -1,0 +1,17 @@
+---
+- name: New User Linux
+  hosts: 172.31.3.117
+  become: true
+  tasks:
+    - name: New User
+      ansible.builtin.user:
+        name: "{{ username }}"
+        password: "{{ password }}"
+        groups:
+          - audio
+        state: "present"
+        shell: "/bin/bash"
+        system: false
+        create_home: true
+        home: "/home/{{ username }}"
+        comment: "Ansible example"
